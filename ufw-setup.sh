@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -x  # echo on
+set -x  # echo on
 
 
 # Usage:
@@ -52,6 +52,16 @@ function allow_www {
 
 
 
+function allow_github {
+	# IP-адреса соответствующие github.com: 192.30.253.112, 192.30.253.113.
+	getent hosts github.com | awk '{ print $1 }' | while read -r ip ; do
+		sudo ufw allow out on "$1" from any to "$ip" port 22 proto tcp
+	done
+}
+
+
+
+
 function for_admin {
 	:
 }
@@ -62,6 +72,7 @@ function for_devel_web_server {
 
 function for_devel {
 	allow_www "$1"  # разработчику нужен доступ в интернет (DNS, HTTP, HTTPS), например, для доступа к публичным API онлайн-сервисов.
+	allow_github "$1"
 }
 
 function for_surf {
@@ -78,6 +89,7 @@ function for_work {
 
 function for_host {
 	allow_www "$1"
+	allow_github "$1"
 }
 
 
