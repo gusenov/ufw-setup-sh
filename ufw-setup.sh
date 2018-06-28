@@ -62,8 +62,21 @@ function allow_github {
 
 
 
+function allow_my_servers() {
+	my_servers_file="my-servers.csv"
+	if [ -f "$my_servers_file" ]; then
+		while IFS=, read -r ip_addr port_num proto_name
+		do
+			sudo ufw allow out on "$1" from any to $ip_addr port $port_num proto $proto_name
+		done < "$my_servers_file"
+	fi
+}
+
+
+
+
 function for_admin {
-	:
+	allow_my_servers "$1"
 }
 
 function for_devel_web_server {
@@ -88,6 +101,8 @@ function for_work {
 }
 
 function for_host {
+	allow_my_servers "$1"
+
 	allow_www "$1"
 	allow_github "$1"
 }
