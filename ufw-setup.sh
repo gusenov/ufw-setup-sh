@@ -53,8 +53,23 @@ function allow_www {
 
 
 function allow_github {
-	# IP-адреса соответствующие github.com: 192.30.253.112, 192.30.253.113.
+	# IP-адреса соответствующие github.com:
+	#  192.30.253.112
+	#  192.30.253.113
 	getent hosts github.com | awk '{ print $1 }' | while read -r ip ; do
+		sudo ufw allow out on "$1" from any to "$ip" port 22 proto tcp
+	done
+}
+
+function allow_bitbucket {
+	# IP-адреса соответствующие bitbucket.org: 
+	#  18.205.93.0
+	#  18.205.93.1
+	#  18.205.93.2
+	#  2406:da00:ff00::22c0:3470
+	#  2406:da00:ff00::22c3:9b0a
+	#  2406:da00:ff00::22cd:e0db
+	getent ahosts bitbucket.org | awk '{ print $1 }' | sort --unique | while read -r ip ; do
 		sudo ufw allow out on "$1" from any to "$ip" port 22 proto tcp
 	done
 }
@@ -105,6 +120,7 @@ function for_host {
 
 	allow_www "$1"
 	allow_github "$1"
+	allow_bitbucket "$1"
 }
 
 
