@@ -77,6 +77,19 @@ function allow_bitbucket {
 
 
 
+function allow_ssh_to_virtualbox() {
+	sudo ufw allow out on "$1" from 192.168.56.1 to 192.168.56.0/255.255.255.0 port 22 proto tcp
+	# 1) Зайти в Менеджер сетей хоста (Host Network Manager) и создать новую сеть (network),
+	#    её имя по умолчанию будет vboxnet0. Свойства:
+	#     192.168.56.1 - это IPv4 адрес присваиваемый по умолчанию виртуальному адаптеру хоста.
+	#     255.255.255.0 - это IPv4 маска сети (IPv4 Network Mask).
+	# 2) Зайти в настройки ВМ и в разделе Сеть (Network) выбрать тип подключения 
+	#    Виртуальный адаптер хоста (Host-only Adapter), а в качестве имени (name) выбрать vboxnet0.
+}
+
+
+
+
 function allow_my_servers() {
 	my_servers_file="my-servers.csv"
 	if [ -f "$my_servers_file" ]; then
@@ -121,6 +134,8 @@ function for_host {
 	allow_www "$1"
 	allow_github "$1"
 	allow_bitbucket "$1"
+	
+	allow_ssh_to_virtualbox "vboxnet0"
 }
 
 

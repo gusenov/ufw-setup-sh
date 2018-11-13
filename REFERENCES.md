@@ -4,3 +4,8 @@
 - [Linux command line utility to resolve host names using /etc/hosts first - Server Fault](https://serverfault.com/questions/303716/linux-command-line-utility-to-resolve-host-names-using-etc-hosts-first)
 - [shell - Unique lines in bash - Stack Overflow](https://stackoverflow.com/questions/16327566/unique-lines-in-bash)
 
+- [VirtualBox images for Xenomai on Debian linux](http://www.cs.ru.nl/lab/xenomai/virtualbox.html)
+- [virtualbox - No Host only adapter selected - Ask Ubuntu](https://askubuntu.com/questions/198452/no-host-only-adapter-selected)
+- [networking - How do I find my internal ip address? - Ask Ubuntu](https://askubuntu.com/questions/430853/how-do-i-find-my-internal-ip-address)
+- [Ubuntu Manpage: ufw - program for managing a netfilter firewall](http://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html)
+
