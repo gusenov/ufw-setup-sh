@@ -145,6 +145,10 @@ function deny_all {
 	sudo ufw reset
 	sudo ufw default deny incoming
 	sudo ufw default deny outgoing
+	
+	# By default, UFW allows ping requests.
+	# Deny ICMP ping requests:
+	sudo sed -i '/ufw-before-input.*icmp/s/ACCEPT/DROP/g' /etc/ufw/before.rules
 }
 deny_all  # по умолчанию лучше запретить всё.
 

@@ -9,3 +9,8 @@
 - [networking - How do I find my internal ip address? - Ask Ubuntu](https://askubuntu.com/questions/430853/how-do-i-find-my-internal-ip-address)
 - [Ubuntu Manpage: ufw - program for managing a netfilter firewall](http://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html)
 
+- [How to deny ICMP ping requests on Ubuntu 18.04 Bionic Beaver Linux - LinuxConfig.org](https://linuxconfig.org/how-to-deny-icmp-ping-requests-on-ubuntu-18-04-bionic-beaver-linux)
+- [[ubuntu] ufw disable ping / icmp](https://ubuntuforums.org/showthread.php?t=773485)
+- [How to Block Ping ICMP Requests to Linux Systems](https://www.tecmint.com/block-ping-icmp-requests-to-linux/)
+- [UFW - Community Help Wiki](https://help.ubuntu.com/community/UFW)
+
