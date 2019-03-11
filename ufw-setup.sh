@@ -39,6 +39,22 @@ function allow_google_public_dns {
 	sudo ufw allow out on "$1" from any to 8.8.4.4 port 53 proto udp
 }
 
+function allow_yandex_dns {
+	# https://dns.yandex.com/
+	
+	# Basic (quick and reliable DNS):
+	sudo ufw allow out on "$1" from any to 77.88.8.8 port 53 proto udp
+	sudo ufw allow out on "$1" from any to 77.88.8.1 port 53 proto udp
+	
+	# Safe (protection from virus and fraudulent content):
+	sudo ufw allow out on "$1" from any to 77.88.8.88 port 53 proto udp
+	sudo ufw allow out on "$1" from any to 77.88.8.2 port 53 proto udp
+	
+	# Family (without adult content):
+	sudo ufw allow out on "$1" from any to 77.88.8.7 port 53 proto udp
+	sudo ufw allow out on "$1" from any to 77.88.8.3 port 53 proto udp
+}
+
 function allow_http_and_https {
 	sudo ufw allow out on "$1" from any to 0.0.0.0/0 port 80 proto tcp
 	sudo ufw allow out on "$1" from any to 0.0.0.0/0 port 443 proto tcp
@@ -46,6 +62,7 @@ function allow_http_and_https {
 
 function allow_www {
 	allow_google_public_dns "$1"
+	allow_yandex_dns "$1"
 	allow_http_and_https "$1"
 }
 
